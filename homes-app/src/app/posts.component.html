@@ -1,10 +1,12 @@
-<form (ngSubmit)="onSubmit()" #recommendationForm="ngForm">
+<form (ngSubmit)="onSubmit()">
     <mat-form-field>
-        <mat-label>Recommendation Text</mat-label>
-        <textarea matInput [(ngModel)]="newPost.recommendationText" name="recommendationText" required></textarea>
+      <mat-label>Recommendation Text</mat-label>
+      <textarea matInput [(ngModel)]="newPost.recommendationText" name="recommendationText" required></textarea>
     </mat-form-field>
-    <button mat-raised-button type="submit" [disabled]="!recommendationForm.valid">Submit</button>
-</form>
+  
+    <button mat-button type="submit">Submit</button>
+  </form>
+  
 
 
 
@@ -21,7 +23,6 @@
       </mat-card-actions>
       <mat-card-content>
         <p>{{ post.timestamp | date: 'medium' }}</p>
-        <p>{{ post.user_id || 'Anonymous' }}</p>
       </mat-card-content>
     </mat-card>
   </div>

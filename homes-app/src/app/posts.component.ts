@@ -23,7 +23,7 @@ import { RecommendationDTO } from './posts/recommendation.dto'; // Adjust the pa
 export class PostsComponent implements OnInit {
   posts: any[] = [];
   expandedPostId: number | null = null; // Declare expandedPostId property
-  currentUser = { id: 1 }; // Initialize currentUser with a default id
+  currentUser = { id: 32 }; // Initialize currentUser with a default id
   newPost = { recommendationText: '', userId: 0 }; // New post object with userId initialized to 0
 
   constructor(private postService: PostService, private http: HttpClient, private recommendationService: RecommendationService) {} // Inject HttpClient and RecommendationService
@@ -79,19 +79,19 @@ export class PostsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.newPost.recommendationText && this.newPost.userId) {
-        this.recommendationService.createRecommendation(this.newPost).subscribe(
-            (response) => {
-                console.log('Recommendation created successfully!', response);
-                // Optionally reset the form
-                this.newPost = { recommendationText: '', userId: this.currentUser.id };
-            },
-            (error) => {
-                console.error('Error creating recommendation:', error);
-            }
-        );
+    if (this.newPost.recommendationText) { // Removed userId validation for now
+      this.newPost.userId = this.currentUser.id; // Set userId before submission
+      this.recommendationService.createRecommendation(this.newPost).subscribe(
+        (response) => {
+          console.log('Recommendation created successfully!', response);
+          this.newPost = { recommendationText: '', userId: this.currentUser.id }; // Reset the form
+        },
+        (error) => {
+          console.error('Error creating recommendation:', error);
+        }
+      );
     } else {
-        console.error('Form is invalid or incomplete!');
+      console.error('Form is invalid!');
     }
-}
+  }
 }

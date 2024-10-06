@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostsComponent } from './posts.component';
@@ -10,11 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 
 const routerConfig: Routes = [
-    {
-        path: 'home',
-        component: HomeComponent,
-        title: 'Home'
-    },
+  
     { 
         path: 'login', 
         component: LoginComponent,

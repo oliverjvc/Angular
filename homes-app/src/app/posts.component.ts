@@ -1,34 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './post.service'; // Adjust the path as needed
-import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClient } from '@angular/common/http'; // Import HttpClient
+import { CommonModule } from '@angular/common'; // Import CommonModule
 import { MatCardModule } from '@angular/material/card'; // Import MatCardModule
-import { MatButtonModule } from '@angular/material/button'; // Import MatButtonModule if you're using buttons
+import { MatButtonModule } from '@angular/material/button'; // Import MatButtonModule
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css'], 
+  styleUrls: ['./posts.component.css'],
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule], // Import the required modules
+  imports: [CommonModule, MatCardModule, MatButtonModule, HttpClientModule, FormsModule, MatFormFieldModule, MatInputModule],
 })
 export class PostsComponent implements OnInit {
-  posts: any[] = []; // Change to Post[] if you have a model
-  expandedPostId: number | null = null;
+  posts: any[] = [];
+  expandedPostId: number | null = null; // Declare expandedPostId property
+  newPost = { recommendationText: '' }; // New post object
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private http: HttpClient) {} // Inject HttpClient
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(
       (data) => {
-        this.posts = data; // Store the fetched posts
-        console.log('Fetched Posts: ', this.posts); // Debug output
+        this.posts = data; 
+        console.log('Fetched Posts: ', this.posts);
       },
       (error) => {
-        console.error('Error fetching posts:', error); // Log any errors
+        console.error('Error fetching posts:', error);
       }
     );
-  
+  }
+
+  fetchPosts() {
+    this.postService.getPosts().subscribe(
+      (data) => {
+        this.posts = data;
+      },
+      (error) => {
+        console.error('Error fetching posts:', error);
+      }
+    );
   }
 
   togglePost(postId: number): void {
@@ -36,11 +52,25 @@ export class PostsComponent implements OnInit {
   }
 
   showFullText(text: string): void {
-    alert(text); // Replace with your desired way of displaying the full text
+    alert(text); 
   }
+
   getPostTitle(text: string): string {
     const splitText = text.split('\r\n\r\n');
-    return splitText[0]; // Get the part before the first occurrence of '\r\n\r\n'
+    return splitText[0]; 
   }
-  
+
+  createPost() {
+    if (this.newPost.recommendationText.trim()) {
+      this.postService.createPost(this.newPost).subscribe(
+        (response) => {
+          this.fetchPosts(); 
+          this.newPost.recommendationText = ''; 
+        },
+        (error) => {
+          console.error('Error creating post:', error);
+        }
+      );
+    }
+  }
 }

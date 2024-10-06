@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './guards/auth.service';
 import { CommonModule } from '@angular/common';
@@ -20,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     </main>
   `,
   styleUrls: ['./app.component.css'],
-  imports: [RouterModule, HomeComponent, NavbarComponent, CommonModule, HttpClientModule],  
+  imports: [RouterModule, NavbarComponent, CommonModule, HttpClientModule],  
 })
 export class AppComponent {
   constructor(private authService: AuthService) { }

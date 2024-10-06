@@ -39,4 +39,8 @@ export class PostService {
     const commentPayload = { text: commentText };
     return this.http.post(`${this.apiUrl}/${postId}/comments`, commentPayload);
   }
+
+  createPost(post: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, post);
+  }
 }

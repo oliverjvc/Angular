@@ -8,6 +8,9 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { RecommendationService } from './posts/recommendation.service'; // Adjust the path as necessary
+import { RecommendationDTO } from './posts/recommendation.dto'; // Adjust the path as necessar
+
 
 
 @Component({
@@ -20,9 +23,10 @@ import { MatInputModule } from '@angular/material/input';
 export class PostsComponent implements OnInit {
   posts: any[] = [];
   expandedPostId: number | null = null; // Declare expandedPostId property
-  newPost = { recommendationText: '' }; // New post object
+  currentUser = { id: 1 }; // Initialize currentUser with a default id
+  newPost = { recommendationText: '', userId: 0 }; // New post object with userId initialized to 0
 
-  constructor(private postService: PostService, private http: HttpClient) {} // Inject HttpClient
+  constructor(private postService: PostService, private http: HttpClient, private recommendationService: RecommendationService) {} // Inject HttpClient and RecommendationService
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(
@@ -73,4 +77,21 @@ export class PostsComponent implements OnInit {
       );
     }
   }
+
+  onSubmit() {
+    if (this.newPost.recommendationText && this.newPost.userId) {
+        this.recommendationService.createRecommendation(this.newPost).subscribe(
+            (response) => {
+                console.log('Recommendation created successfully!', response);
+                // Optionally reset the form
+                this.newPost = { recommendationText: '', userId: this.currentUser.id };
+            },
+            (error) => {
+                console.error('Error creating recommendation:', error);
+            }
+        );
+    } else {
+        console.error('Form is invalid or incomplete!');
+    }
+}
 }

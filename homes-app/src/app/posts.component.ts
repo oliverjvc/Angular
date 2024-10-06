@@ -38,5 +38,9 @@ export class PostsComponent implements OnInit {
   showFullText(text: string): void {
     alert(text); // Replace with your desired way of displaying the full text
   }
+  getPostTitle(text: string): string {
+    const splitText = text.split('\r\n\r\n');
+    return splitText[0]; // Get the part before the first occurrence of '\r\n\r\n'
+  }
   
 }

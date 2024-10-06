@@ -1,12 +1,15 @@
-<mat-card *ngFor="let post of posts" class="post-card">
-    <mat-card-header>
-      <mat-card-title>Post ID: {{ post.recommendationId }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{ post.recommendationText | slice:0:150 }}...</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button (click)="showFullText(post.recommendationText)">Learn More</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="post-container">
+    <mat-card *ngFor="let post of posts" class="post-card">
+      <mat-card-header>
+        <mat-card-title>{{ getPostTitle(post.recommendationText) }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ post.recommendationText | slice: 0: 150 }}...</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="showFullText(post.recommendationText)">Learn More</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
   

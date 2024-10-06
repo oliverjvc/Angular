@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from './post.service'; // Adjust the path as needed
+import { PostService } from './post.service'; 
 import { HttpClient } from '@angular/common/http'; // Import HttpClient
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { MatCardModule } from '@angular/material/card'; // Import MatCardModule
@@ -8,8 +8,9 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RecommendationService } from './posts/recommendation.service'; // Adjust the path as necessary
-import { RecommendationDTO } from './posts/recommendation.dto'; // Adjust the path as necessar
+import { RecommendationService } from './posts/recommendation.service'; 
+import { RecommendationDTO } from './posts/recommendation.dto'; 
+
 
 
 

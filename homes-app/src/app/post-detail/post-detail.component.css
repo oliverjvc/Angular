@@ -1,0 +1,39 @@
+/* post-detail.component.css */
+
+.post-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.post-meta {
+    font-size: 14px;
+    color: #999;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-meta .author {
+    font-weight: bold;
+}
+
+.post-meta .date {
+    font-style: italic;
+}

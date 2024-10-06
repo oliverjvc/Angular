@@ -1,0 +1,30 @@
+<article>
+  <section class="post-details">
+    <h1>{{ post?.title }}</h1>
+    <p>{{ post?.content }}</p>
+  </section>
+
+  <!-- Comments Section -->
+  <section class="comments-section">
+    <h2>Comments</h2>
+    <div *ngIf="comments.length > 0; else noComments">
+      <div *ngFor="let comment of comments" class="comment">
+        <strong>{{ comment.username }}</strong>
+        <p>{{ comment.text }}</p>
+      </div>
+    </div>
+    <ng-template #noComments>
+      <p>No comments yet. Be the first to comment!</p>
+    </ng-template>
+  </section>
+
+  <!-- Add New Comment -->
+  <section class="add-comment">
+    <h2>Add a comment</h2>
+    <form [formGroup]="commentForm" (submit)="submitComment()">
+      <label for="comment-text">Your Comment</label>
+      <textarea id="comment-text" formControlName="text"></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+  </section>
+</article>

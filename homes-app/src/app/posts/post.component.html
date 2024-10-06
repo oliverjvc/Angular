@@ -1,0 +1,27 @@
+<!-- post.component.html -->
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Dobrodošli na stranicu za uputstva o očuvanju cveća</h2>
+        <p>Saznajte sve o održavanju cveća, gde kupiti, i još mnogo toga.</p>
+  
+        <h4>Linkovi ka radnjama</h4>
+        <p>Posetite naše radnje kako biste pronašli savršeno cveće za vaš vrt.</p>
+        <a href="/KnjigaCveca/stores" class="btn btn-primary">Radnje</a>
+      </div>
+    </div>
+  </div>
+  
+  <h2>Objave:</h2>
+  
+  <div class="recommendation-container">
+    <div class="recommendation-post" *ngFor="let post of posts">
+      <div class="post-content">
+        <textarea readonly>{{ post.recommendationText }}</textarea>
+      </div>
+      <button class="comment-link" (click)="viewPost(post.recommendationId, post.userId)">
+        Pogledati celu objavu
+      </button>
+    </div>
+  </div>
+  

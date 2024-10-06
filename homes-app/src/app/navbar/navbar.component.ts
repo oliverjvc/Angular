@@ -28,7 +28,7 @@ import { Router } from '@angular/router';
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item" *ngIf="!authService.isLoggedIn()">
               <a class="nav-link" routerLink="/login">Login</a>
@@ -39,9 +39,6 @@ import { Router } from '@angular/router';
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/posts">Posts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
           <!-- Uncomment if you want a search bar -->

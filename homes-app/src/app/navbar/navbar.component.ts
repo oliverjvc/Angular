@@ -40,7 +40,7 @@ import { ChildDateComponent } from '../child-date.component';
               <button class="nav-link btn btn-link" (click)="logout()">Logout</button> <!-- Logout button -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/posts">Posts</a>
+              <a class="nav-link" href="/posts">Posts</a>
             </li>
           </ul>
           <app-child-date [currentDate]="currentDate"></app-child-date> <!-- Passing currentDate to child -->

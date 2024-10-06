@@ -43,7 +43,6 @@ import { ChildDateComponent } from '../child-date.component';
               <a class="nav-link" routerLink="/posts">Posts</a>
             </li>
           </ul>
-          <span>Welcome to the site! Today is:</span>
           <app-child-date [currentDate]="currentDate"></app-child-date> <!-- Passing currentDate to child -->
         </div>
       </div>

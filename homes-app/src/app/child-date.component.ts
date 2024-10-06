@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-child-date',
-  template: `<span>{{ currentDate }}</span>`,
+  template: `<span>Welcome to the site! Today is: {{ currentDate }}</span>`,
   standalone: true
 })
 export class ChildDateComponent {

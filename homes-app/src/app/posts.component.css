@@ -30,7 +30,7 @@
   }
   
   .post-card {
-    flex: 1 1 calc(33% - 16px); /* Adjust the width of the cards */
+    flex: 1 1 calc(25% - 16px); /* Adjust the width of the cards */
     margin-bottom: 16px;
   }
   

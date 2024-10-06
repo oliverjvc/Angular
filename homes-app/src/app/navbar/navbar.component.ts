@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../guards/auth.service';
 import { Router } from '@angular/router';
+import { ChildDateComponent } from '../child-date.component';
+
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ChildDateComponent],
   providers: [AuthService],
   template: `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Flower book</a>
-        
+       
         <button 
           class="navbar-toggler" 
           type="button" 
@@ -41,6 +43,8 @@ import { Router } from '@angular/router';
               <a class="nav-link" routerLink="/posts">Posts</a>
             </li>
           </ul>
+          <span>Welcome to the site! Today is:</span>
+          <app-child-date [currentDate]="currentDate"></app-child-date> <!-- Passing currentDate to child -->
           <!-- Uncomment if you want a search bar -->
           <!-- 
           <form class="d-flex">
@@ -54,6 +58,7 @@ import { Router } from '@angular/router';
   `,
 })
 export class NavbarComponent {
+  currentDate: string = new Date().toLocaleDateString(); // Provide current date to child component
   constructor(public authService: AuthService, private router: Router) { }
 
   get username(): string | null {
